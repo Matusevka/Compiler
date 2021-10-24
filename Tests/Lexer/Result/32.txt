@@ -1,0 +1,4 @@
+1:1 Separator, "..", ..
+1:3 Separator, ".", .
+1:4 Separator, ",", ,
+1:5 Separator, ".", .

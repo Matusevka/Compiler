@@ -1,0 +1,32 @@
+1:1 Reserved word, "program", program
+1:9 Identifier, "hello", hello
+1:14 Separator, ";", ;
+2:3 Reserved word, "var", var
+3:5 Identifier, "a", a
+3:6 Separator, ",", ,
+3:8 Identifier, "bn", bn
+3:10 Separator, ",", ,
+3:12 Identifier, "a_1", a_1
+3:15 Separator, ":", :
+3:17 Predefined word, "integer", integer
+3:24 Separator, ";", ;
+4:5 Identifier, "b", b
+4:6 Separator, ":", :
+4:8 Reserved word, "string", string
+4:14 Separator, ";", ;
+6:1 Reserved word, "begin", begin
+7:3 Identifier, "c", c
+7:5 Assignment, ":=", :=
+7:8 Identifier, "a", a
+7:10 Operator, "-", -
+7:12 Identifier, "b", b
+7:14 Operator, "+", +
+7:16 Real, "2e-2", 0.02
+7:20 Separator, ";", ;
+8:3 Predefined word, "Write", Write
+8:8 Separator, "(", (
+8:9 String, "'a+b'", 'a+b'
+8:14 Separator, ")", )
+8:15 Separator, ";", ;
+9:1 Reserved word, "end", end
+9:4 Separator, ".", .

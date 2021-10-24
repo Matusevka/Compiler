@@ -1,0 +1,9 @@
+program hello;
+  var 
+    a, bn, a_1: integer;
+    b: string;
+
+begin
+  c := a - b + 2e-2;
+  Write('a+b');
+end.
