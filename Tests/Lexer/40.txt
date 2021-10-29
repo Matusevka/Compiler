@@ -4,6 +4,6 @@ program hello;
     b: string;
 
 begin
-  c := a - b + 2e-2;
+  c := a - b + 2;
   Write('a+b');
 end.

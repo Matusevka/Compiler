@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Acer\\OneDrive\\Рабочий стол\\compiler-pascal-cSharp-master\\compiler.csproj": {}
+    "C:\\Users\\Acer\\Desktop\\Compiler\\compiler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Acer\\OneDrive\\Рабочий стол\\compiler-pascal-cSharp-master\\compiler.csproj": {
+    "C:\\Users\\Acer\\Desktop\\Compiler\\compiler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Acer\\OneDrive\\Рабочий стол\\compiler-pascal-cSharp-master\\compiler.csproj",
+        "projectUniqueName": "C:\\Users\\Acer\\Desktop\\Compiler\\compiler.csproj",
         "projectName": "compiler",
-        "projectPath": "C:\\Users\\Acer\\OneDrive\\Рабочий стол\\compiler-pascal-cSharp-master\\compiler.csproj",
+        "projectPath": "C:\\Users\\Acer\\Desktop\\Compiler\\compiler.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Acer\\OneDrive\\Рабочий стол\\compiler-pascal-cSharp-master\\obj\\",
+        "outputPath": "C:\\Users\\Acer\\Desktop\\Compiler\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config"

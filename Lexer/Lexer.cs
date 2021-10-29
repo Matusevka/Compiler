@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -42,7 +41,7 @@ namespace compiler
       private char symbol = new char();
       private char saveSymbol = new char();
 
-      private int currentStr = 1;
+      private int currentStr = 1;        
       private int currentCol = 0;
 
       private int[] coordinates = new int[2];
@@ -50,7 +49,7 @@ namespace compiler
       private bool isLast = false;
       private bool isEnd = false;
 
-      private StreamReader streamReader;
+      private StreamReader streamReader; 
       TokenType TokenType = new TokenType();
 
       public Lexer(string path)
@@ -107,15 +106,10 @@ namespace compiler
               {
                 addSymbol(symbol, States.Comment);
               }
-              else if(symbol == '#')
-              {
-                addSymbol(symbol, States.Literal);
-              }
               else
               {
                 addSymbol(symbol, States.Error);
               }
-
               break;
             
             case States.Int:
@@ -134,7 +128,7 @@ namespace compiler
               else if(Char.IsLetter(symbol))
               {
                 addSymbol(symbol, States.Error);
-              } 
+              }
               else
               {
                 state = States.Start;
@@ -143,12 +137,7 @@ namespace compiler
                 {
                   return new Token(coordinates, TokenType.integer, buf, res);
                 }
-                else
-                {
-                  errorHadler($"Range check error: {buf}");
-                }
-
-                addSymbol(symbol, States.Error);
+                errorHadler($"Range check error: {buf}");
               }
               break;
 
@@ -182,34 +171,24 @@ namespace compiler
                 {
                   return new Token(coordinates, TokenType.integer, buf, res);
                 }
-                else
-                {
-                  errorHadler($"Range check error: {buf}");
-                }
-                addSymbol(symbol, States.Error);
+                errorHadler($"Range check error: {buf}");
               }
               else
               {
                 state = States.Start;
                 if (buf[buf.Length - 1] != '.')
                 {
-                  if (float.Parse(buf) >= 2.9e-39 && float.Parse(buf) <= 1.7e38)
+                  if (float.TryParse(buf, out float res))
                   {
-                    return new Token(coordinates, TokenType.real, buf, float.Parse(buf));
+                    return new Token(coordinates, TokenType.real, buf, buf);
                   }
-                  else
-                  {
-                    errorHadler($"Range check error: {buf}");
-                  }
+                  errorHadler($"Range check error: {buf}");
                 }
-                else if (isEnd) 
+                else if (isEnd)
                 {
                   errorHadler($"Syntax error: \"{buf}\"");
                 }
-
-                addSymbol(symbol, States.Error);
               }
-
               break;
 
             case States.RealExp:
@@ -217,86 +196,23 @@ namespace compiler
               {
                 addSymbol(symbol, States.RealExp);
               }
-              else if (Char.IsDigit(symbol))
+              else if (Char.IsDigit(symbol))                                                                                          //пример 2.е5
               {
                 addSymbol(symbol, States.RealExp);
               }
               else
               {
+                if (isLast)                                                                                                                         //в случае если пришла ахинея. прмер 2.e+
+                {
+                  errorHadler($"Syntax error: \"{buf}\"");
+                }
                 if (float.TryParse(buf, out float res))
                 {
-                  if (float.Parse(buf) >= 2.9e-39 && float.Parse(buf) <= 1.7e38)
-                  {
                     state = States.Start;
                     return new Token(coordinates, TokenType.real, buf, res);
-                  }
-                  else
-                  {
-                    errorHadler($"Range check error: {buf}");
-                  }
                 }
-
-                if (isLast)
-                {
-                  errorHadler($"Syntax error: \"{buf}\"");
-                }
-
-                addSymbol(symbol, States.Error);
+                errorHadler($"Range check error: {buf}");
               }
-
-              break;
-
-            case States.Literal:
-              if (Char.IsDigit(symbol))
-              {
-                addSymbol(symbol, States.Literal);
-              }
-              else if (symbol == '\'')
-              {
-                addSymbol(symbol, States.String);
-              }
-              else if(Char.IsLetter(symbol))
-              {
-                addSymbol(symbol, States.Error);
-              }
-              else
-              {
-                if(!Char.IsDigit(buf[buf.Length -1]))
-                {
-                  errorHadler($"Syntax error: \"{buf}\"");
-                }
-                else
-                {
-                  Regex regex = new Regex(@"#\d+");
-                  string value = buf;
-
-                  MatchCollection matches = regex.Matches(value);
-                  if (matches.Count > 0)
-                  {
-                    foreach (Match match in matches)
-                    {
-                      if (Int16.TryParse(match.Value.Substring(1), out short res))
-                      {
-                        int index = value.IndexOf(match.Value);
-                        value = value.Substring(0, index) + ((char)res) + value.Substring(index + match.Value.Length);
-                      }
-                      else
-                      {
-                        errorHadler($"Range check error: {match.Value}");
-                      }
-                    }
-                                        
-                  }
-
-                  value = Regex.Replace(value, "'", "");
-                  value = $"'{value}'";
-
-                  state = States.Start;
-
-                  return new Token(coordinates, TokenType.lexString, buf, value); 
-                }
-              }
-//разобрать case выше
               break;
 
             case States.Identifier:
@@ -307,14 +223,13 @@ namespace compiler
               else
               {
                 state = States.Start;
-                string tokenType = TokenType.identifier;
+                string tokenType = TokenType.identifier;                                                                                            //указываем изначальный тип
 
                 if(isReservedWord(buf.ToLower())) tokenType = TokenType.reserved;
                 if(isOperator(buf.ToLower())) tokenType = TokenType.lexOperator;
 
                 return new Token(coordinates, tokenType, buf, buf );
               }
-
               break;
             
             
@@ -326,36 +241,7 @@ namespace compiler
               else if (symbol == '\'')
               {
                 addSymbol(symbol, States.Start);
-                
-                if(symbol != '#')
-                {
-                  Regex regex = new Regex(@"#\d+");
-                  string value = buf;
-
-                  MatchCollection matches = regex.Matches(value);
-
-                  if (matches.Count > 0)
-                  {
-                    foreach (Match match in matches)
-                    {
-                      if (Int16.TryParse(match.Value.Substring(1), out short res))
-                      {
-                        int index = value.IndexOf(match.Value);
-                        value = value.Substring(0, index) + ((char)res) + value.Substring(index + match.Value.Length);
-                      }
-                    }
-
-                    value = Regex.Replace(value, "'", "");
-                    value = $"'{value}'";
-                                        
-                  }
-
-                  return new Token(coordinates, TokenType.lexString, buf, value);       
-                }
-                else
-                {
-                  addSymbol(symbol, States.Literal);
-                }
+                return new Token(coordinates, TokenType.lexString, buf, buf);
               }
               else
               {
@@ -380,11 +266,10 @@ namespace compiler
 
                 return new Token(coordinates, type, buf, buf);
               }
-
               break;
 
             case States.Sep:
-              if (isOperator(buf + symbol) || isAssignment(buf + symbol))
+              if (isAssignment(buf + symbol))
               {
                 state = States.Operator;
               }
@@ -398,7 +283,7 @@ namespace compiler
               }
               else
               {
-                  if (buf == "." && Char.IsLetterOrDigit(symbol))
+                  if (buf == "." && Char.IsLetterOrDigit(symbol))                                               //.a
                   {
                     addSymbol(symbol, States.Error);
                   }
@@ -408,7 +293,6 @@ namespace compiler
                     return new Token(coordinates, TokenType.separator, buf, buf);
                   }
               }
-
               break;
             
             case States.Error:
@@ -417,12 +301,11 @@ namespace compiler
                 isEnd = true; 
                 errorHadler($"Syntax error: \"{buf}\"");
               }
-
               addSymbol(symbol, States.Error);
               break;
             
             case States.Comment:
-              if ( symbol == '}' && buf[0] == '{' || buf[buf.Length - 1].ToString() + symbol == "*)" && buf.Substring(0, 2) == "(*")
+              if ( symbol == '}' && buf[0] == '{' || buf[buf.Length - 1].ToString() + symbol == "*)" && buf.Substring(0, 2) == "(*")                //если комент, очищаем буфер и идём дальше
               {
                 state = States.Start;
                 clearBuffer();
@@ -454,7 +337,6 @@ namespace compiler
               break;
           }
         }
-
         return new Token(currentStr, currentCol, "EOF", "End of file", "End of file");
       }
 

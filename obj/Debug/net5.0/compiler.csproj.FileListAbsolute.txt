@@ -14,3 +14,19 @@ C:\Users\Acer\OneDrive\Рабочий стол\compiler-pascal-cSharp-master\obj
 C:\Users\Acer\OneDrive\Рабочий стол\compiler-pascal-cSharp-master\obj\Debug\net5.0\ref\compiler.dll
 C:\Users\Acer\OneDrive\Рабочий стол\compiler-pascal-cSharp-master\obj\Debug\net5.0\compiler.pdb
 C:\Users\Acer\OneDrive\Рабочий стол\compiler-pascal-cSharp-master\obj\Debug\net5.0\compiler.genruntimeconfig.cache
+C:\Users\Acer\Desktop\Compiler\bin\Debug\net5.0\compiler.exe
+C:\Users\Acer\Desktop\Compiler\bin\Debug\net5.0\compiler.deps.json
+C:\Users\Acer\Desktop\Compiler\bin\Debug\net5.0\compiler.runtimeconfig.json
+C:\Users\Acer\Desktop\Compiler\bin\Debug\net5.0\compiler.runtimeconfig.dev.json
+C:\Users\Acer\Desktop\Compiler\bin\Debug\net5.0\compiler.dll
+C:\Users\Acer\Desktop\Compiler\bin\Debug\net5.0\ref\compiler.dll
+C:\Users\Acer\Desktop\Compiler\bin\Debug\net5.0\compiler.pdb
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\compiler.csprojAssemblyReference.cache
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\compiler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\compiler.AssemblyInfoInputs.cache
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\compiler.AssemblyInfo.cs
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\compiler.csproj.CoreCompileInputs.cache
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\compiler.dll
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\ref\compiler.dll
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\compiler.pdb
+C:\Users\Acer\Desktop\Compiler\obj\Debug\net5.0\compiler.genruntimeconfig.cache
