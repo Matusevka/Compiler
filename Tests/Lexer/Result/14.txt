@@ -1,1 +1,1 @@
-1:1 Range check error: 6.4e-40
+1:1 Real, "6.4e-40", 6.4E-40

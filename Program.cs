@@ -14,6 +14,7 @@ namespace compiler
 
         static void Main(string[] args)
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if(args[0] == "-l")
             {
                 if (args.Length >= 2)

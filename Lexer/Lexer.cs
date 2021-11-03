@@ -70,7 +70,6 @@ namespace compiler
 
         while (!isEnd)
         {
-          isEnd = isLast;
           switch (state)
           {
             case States.Start:
@@ -167,7 +166,7 @@ namespace compiler
                 saveSymbol = '.';
                 buf  = buf.Substring(0, buf.Length - 1);
 
-                if (Int32.TryParse(buf, out int res))
+                if (Int32.TryParse(buf, out int res)) 
                 {
                   return new Token(coordinates, TokenType.integer, buf, res);
                 }
@@ -202,7 +201,7 @@ namespace compiler
               }
               else
               {
-                if (isLast)                                                                                                                         //в случае если пришла ахинея. прмер 2.e+
+                if (new HashSet<char>(){'e', '+', '-'}.Contains(buf[buf.Length - 1]))                                                                                                                         //в случае если пришла ахинея. прмер 2.e+
                 {
                   errorHadler($"Syntax error: \"{buf}\"");
                 }
@@ -212,6 +211,7 @@ namespace compiler
                     return new Token(coordinates, TokenType.real, buf, res);
                 }
                 errorHadler($"Range check error: {buf}");
+                
               }
               break;
 
@@ -231,7 +231,6 @@ namespace compiler
                 return new Token(coordinates, tokenType, buf, buf );
               }
               break;
-            
             
             case States.String:
               if ((symbol != '\'' && isLast) || symbol == '\n' || symbol=='\r')
